@@ -16,46 +16,32 @@ public class Patient {
 
     @NotNull
     private String name ;
-
-
+    
+    
     @NotNull
     @Email
     @Column( unique = true)
     private String email;
-
-
+    
+    
     @NotNull
     private String address;
+    
+    
+    
+    @NotNull
+    private LocalDate date_of_birth;
 
+    public LocalDate getRegistered_date() {
+        return registered_date;
+    }
 
+    public void setRegistered_date(LocalDate registered_date) {
+        this.registered_date = registered_date;
+    }
 
     @NotNull
-    private LocalDate dateofbirth;
-
-
-
-    @NotNull
-    private  LocalDate registeredDate ;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public LocalDate getDateofbirth() {
-        return dateofbirth;
-    }
-
-    public LocalDate getRegisteredDate() {
-        return registeredDate;
-    }
+    private LocalDate registered_date;
 
     public UUID getId() {
         return id;
@@ -65,23 +51,35 @@ public class Patient {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setDateofbirth(LocalDate dateofbirth) {
-        this.dateofbirth = dateofbirth;
+    public LocalDate getDate_of_birth() {
+        return date_of_birth;
     }
 
-    public void setRegisteredDate(LocalDate registeredDate) {
-        this.registeredDate = registeredDate;
+    public void setDate_of_birth(LocalDate date_of_birth) {
+        this.date_of_birth = date_of_birth;
     }
 }
