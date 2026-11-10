@@ -37,6 +37,51 @@ public class Patient {
     @NotNull
     private  LocalDate registeredDate ;
 
+    public String getName() {
+        return name;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public LocalDate getDateofbirth() {
+        return dateofbirth;
+    }
+
+    public LocalDate getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDateofbirth(LocalDate dateofbirth) {
+        this.dateofbirth = dateofbirth;
+    }
+
+    public void setRegisteredDate(LocalDate registeredDate) {
+        this.registeredDate = registeredDate;
+    }
 }
