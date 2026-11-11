@@ -47,6 +47,14 @@ public class PatientController {
     }
 
 
+    @PutMapping ( "/{id}")
+    //localhost:4000/patients/12343434343
+    public ResponseEntity < PatientRequestDTO> updatePatient ( ){
 
+
+
+
+
+    }
 
 }
