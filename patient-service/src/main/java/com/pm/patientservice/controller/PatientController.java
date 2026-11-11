@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/patients") // http://localhost:4000/patients
@@ -34,27 +35,28 @@ public class PatientController {
         return ResponseEntity.ok().body(patientDTOs);
     }
 
+
+    @GetMapping ( "/{id}")
+    public ResponseEntity < PatientResponseDTO>  getPatientById( @PathVariable UUID id ){
+        PatientResponseDTO patientDTOs = patientService.getPatientById(id);
+        return ResponseEntity.ok().body(patientDTOs);
+    }
+
     @PostMapping
     public ResponseEntity  < PatientResponseDTO> createPatient(
             @Valid
             @RequestBody PatientRequestDTO patientRequestDTO){
-
-        System.out.println("Here i reached ");
-
          PatientResponseDTO patientResponseDTO = patientService.createPatient(patientRequestDTO);
-
         return ResponseEntity.ok().body(patientResponseDTO);
     }
 
 
     @PutMapping ( "/{id}")
     //localhost:4000/patients/12343434343
-    public ResponseEntity < PatientRequestDTO> updatePatient ( ){
-
-
-
-
-
+    public ResponseEntity < PatientRequestDTO> updatePatient (  @PathVariable UUID id , @RequestBody
+        PatientRequestDTO patientRequestDTO){
+        PatientResponseDTO patientResponseDTO = patientService.updatePatient(id, patientRequestDTO);
+        return ResponseEntity.ok().body(patientRequestDTO);
     }
 
 }

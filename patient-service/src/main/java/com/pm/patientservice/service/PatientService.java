@@ -7,6 +7,7 @@ import com.pm.patientservice.exception.PatientNotFoundException;
 import com.pm.patientservice.mapper.PatientMapper;
 import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -57,6 +58,11 @@ public class PatientService {
 
     }
 
+    public  PatientResponseDTO  getPatientById( UUID id ){
+        Patient patient = patientRepository.findById(id).orElseThrow(()-> new PatientNotFoundException("Patient not found with ID: " + id ) );
+         return (PatientMapper.toDto(patient));
+    }
+
     public  PatientResponseDTO createPatient( PatientRequestDTO patientRequestDTO ){
 
         String Email = patientRequestDTO.getEmail();
@@ -83,18 +89,16 @@ public class PatientService {
          if( patientRepository.existsByEmail(patientRequestDTO.getEmail() ) ){
 
              throw new EmailAlreadyExistsException(
-                     "A patient with this email already exits" + patientRequestDTO.getEmail();
+                     "A patient with this email already exits" + patientRequestDTO.getEmail()
              );
-
-
-             patient.setName(patientRequestDTO.getName());
-             patient.setEmail(patientRequestDTO.getEmail());
-             patient.setEmail(patientRequestDTO.getEmail());
-             patient.setDate_of_birth(LocalDate.parse(patientRequestDTO.getDate_of_birth()));
-
-             Patient updatedPatient =  patientRepository.save(patient);
-
-             return  PatientMapper.toDto(updatedPatient);
          }
+        patient.setName(patientRequestDTO.getName());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setDate_of_birth(LocalDate.parse(patientRequestDTO.getDate_of_birth()));
+
+        Patient updatedPatient =  patientRepository.save(patient);
+
+        return  PatientMapper.toDto(updatedPatient);
     };
 }
