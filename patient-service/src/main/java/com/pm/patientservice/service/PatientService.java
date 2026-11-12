@@ -21,6 +21,7 @@ public class PatientService {
 //        we create when we needed ( constructer ) is called . while earlier used to do like
         // new keyword outright in top line above . core more moduler and easier to test as we can pass mock
         // and it also adhere priciple of IOC ( inversion of control ) .
+        //
        this.patientRepository = patientRepository;
 
     }
@@ -56,7 +57,7 @@ public class PatientService {
         Patient newPatient =  patientRepository.save(PatientMapper.toModel(patientRequestDTO));
 
 
-        return  PatientMapper.toDto(newPatient);
+        return PatientMapper.toDto(newPatient);
     }
 
 }
